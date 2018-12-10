@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ValerMicle" id="12102018_create_tables">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_product"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="price" type="NUMERIC"/>
+        </createTable>
+        <createTable tableName="order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_order"/>
+            </column>
+            <column name="buyer_email" type="VARCHAR(255)"/>
+            <column name="registration_date" type="DATETIME"/>
+        </createTable>
+        <createTable tableName="sold_product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_sold_product"/>
+            </column>
+            <column name="sold_product_id" type="BIGINT"/>
+            <column name="price" type="NUMERIC"/>
+            <column name="order_id" type="BIGINT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="sold_product_id"
+                                 baseTableName="sold_product"
+                                 constraintName="fk_sold_product_id"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+        <addForeignKeyConstraint baseColumnNames="order_id"
+                                 baseTableName="sold_product"
+                                 constraintName="fk_order_id"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order"/>
+    </changeSet>
+</databaseChangeLog>
