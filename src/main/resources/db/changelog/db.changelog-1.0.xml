@@ -10,7 +10,7 @@
             <column name="name" type="VARCHAR(255)"/>
             <column name="price" type="NUMERIC"/>
         </createTable>
-        <createTable tableName="order">
+        <createTable tableName="purchase_order">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="pk_order"/>
             </column>
@@ -36,6 +36,6 @@
                                  constraintName="fk_order_id"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="order"/>
+                                 referencedTableName="purchase_order"/>
     </changeSet>
 </databaseChangeLog>

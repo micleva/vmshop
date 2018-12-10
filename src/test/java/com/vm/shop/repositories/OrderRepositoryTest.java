@@ -5,7 +5,6 @@ import com.vm.shop.model.Product;
 import com.vm.shop.model.SoldProduct;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +48,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    @Ignore
     public void testSave() {
-        //todo: fix this test
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 
         Order order = new Order();
